@@ -1,0 +1,110 @@
+{
+	"type": "small",
+	"version": "1.0",
+	"areas": [
+		{
+			"name": "kistan",
+			"categories": [
+				{
+					"name": "floors",
+					"checks": [
+						"furnitureRestored",
+						"tableSigns",
+						"tablesWiped",
+						"chairsPutUp",
+						"floorSwept",
+						"sceneSwept",
+						"floorMopped",
+						"sceneMopped"
+					]
+				},
+				{ "name": "micros", "checks": ["counters", "usable"] },
+				{ "name": "trash", "checks": ["lostAndFound", "trashcans"] },
+				{
+					"name": "lasts",
+					"checks": ["windows", "terraceDoor", "lightning", "doors"]
+				}
+			]
+		},
+		{
+			"name": "bar",
+			"categories": [
+				{
+					"name": "softDrinks",
+					"checks": ["coffeemaking", "glassBins", "glassCases", "everythingClosed"]
+				},
+				{
+					"name": "surfaces",
+					"checks": [
+						"emptyAndDried",
+						"runoff",
+						"sink",
+						"floorSwept",
+						"floorMopped",
+						"trash",
+						"everythingBack"
+					]
+				},
+				{ "name": "money", "checks": ["zReport", "ledger"] },
+				{ "name": "lasts", "checks": ["screenAndComputer", "lightning", "shutter", "alarm"] }
+			]
+		},
+		{
+			"name": "kitchen",
+			"categories": [
+				{
+					"name": "dishes",
+					"checks": ["dishesDone", "dryDishesBack", "dishwasherOff", "dishwasherParts"]
+				},
+				{
+					"name": "cleaning",
+					"checks": [
+						"coffeMakerEmpty",
+						"tiledWalls",
+						"counters",
+						"ovens",
+						"stove",
+						"heatingCabinet",
+						"sink"
+					]
+				},
+				{ "name": "floor", "checks": ["leftovers", "trash", "floorSwept", "floorMopped"] },
+				{ "name": "lasts", "checks": ["window", "storageThings", "countersEmpty"] }
+			],
+			"comment": "pestyLeftovers"
+		},
+		{
+			"name": "outside",
+			"categories": [
+				{
+					"name": "all",
+					"checks": ["streetSign", "posters", "toilets", "compressor", "emptyBottles", "littering"]
+				}
+			]
+		},
+		{
+			"name": "hallway",
+			"categories": [
+				{
+					"name": "all",
+					"checks": ["lostAndFound", "storageThings", "floorsSwept", "floorMopped"]
+				}
+			]
+		},
+		{
+			"name": "broomCloset",
+			"categories": [
+				{
+					"name": "all",
+					"checks": ["buckets", "mops", "brooms", "dishingEquipment", "floorScraped"]
+				}
+			]
+		},
+		{
+			"name": "spritis",
+			"categories": [
+				{ "name": "all", "checks": ["noBelongings", "aislesEmpty", "floors", "storageThings"] }
+			]
+		}
+	]
+}

@@ -1,0 +1,83 @@
+{
+	"json.schemas": [
+		{
+			"fileMatch": ["/src/assets/forms/*.json"],
+			"schema": {
+				"type": "object",
+				"required": ["type", "version", "areas"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"description": "Name of the list"
+					},
+					"version": {
+						"type": "string",
+						"description": "Version of the list",
+						"pattern": "^\\d+.\\d+$"
+					},
+					"sortWeight": {
+						"type": "number",
+						"description": "Where the list should be sorted amongst other lists",
+						"default": 0
+					},
+					"areas": {
+						"type": "array",
+						"description": "Ordered list of the areas to clean.",
+						"uniqueItems": true,
+						"items": {
+							"required": ["name", "categories"],
+							"properties": {
+								"name": {
+									"type": "string",
+									"description": "Unique key of the area as a camelcase name. Keep it as short and descriptive as possible so it's easy to work with and to keep the data compact in the back-end.",
+									"examples": [
+										"kistan",
+										"bar",
+										"kitchen",
+										"outside",
+										"hallway",
+										"broomCloset",
+										"spritis",
+										"storeroom"
+									]
+								},
+								"categories": {
+									"type": "array",
+									"description": "Different categories of things to clean",
+									"items": {
+										"required": ["name", "checks"],
+										"properties": {
+											"name": {
+												"type": "string",
+												"description": "Unique key of the category as a camelcase name. The special name `all` must be first in the list and will not have a title displayed. The special name `lasts` must be last in the list. Keep it as short and descriptive as possible so it's easy to work with and to keep the data compact in the back-end.",
+												"examples": ["all", "lasts"]
+											},
+											"checks": {
+												"type": "array",
+												"description": "Each check should be a unique key that describes what should be completed. Keep it as short and descriptive as possible so it's easy to work with and to keep the data compact in the back-end.",
+												"uniqueItems": true,
+												"minLength": 1,
+												"items": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								},
+								"comment": {
+									"type": "string",
+									"description": "An optional comment that will be displayed at the end of the area."
+								}
+							}
+						}
+					},
+					"colors": {
+						"type": "object",
+						"description": "An optional set of colors for the checkmarks of the list",
+						"default": {}
+					}
+				}
+			}
+		}
+	]
+}

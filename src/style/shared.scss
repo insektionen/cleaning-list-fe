@@ -1,0 +1,27 @@
+$input-background: #111;
+$max-screen-width: 1200px;
+$navbar-height: 3.5rem;
+
+.clickable {
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.self-center {
+	align-self: center;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.gap-1 {
+	gap: 1rem !important;
+}
