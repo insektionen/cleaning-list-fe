@@ -1,0 +1,154 @@
+@use './shared.scss' as *;
+
+label.checkbox {
+	display: flex;
+	padding: 0.2em;
+	font-size: 1rem;
+
+	> input[type='checkbox'] {
+		appearance: none;
+		width: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+
+		&:hover ~ span.checkmark > span {
+			opacity: 0.4;
+		}
+
+		&:checked ~ span.checkmark > span {
+			opacity: 1;
+		}
+
+		&:checked ~ span.label {
+			opacity: 0.7;
+			text-decoration-color: currentColor;
+		}
+
+		&:disabled {
+			& ~ span.label {
+				text-decoration-thickness: 0.05em;
+			}
+
+			&:not(:checked) ~ span.checkmark > span {
+				opacity: 0;
+			}
+		}
+	}
+
+	> span.checkmark {
+		margin: 0.25em;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $input-background;
+
+		> span {
+			display: block;
+			transition: all 0.3s ease;
+			color: inherit;
+			background-color: currentColor;
+			opacity: 0;
+		}
+
+		&,
+		> span {
+			min-width: 1.2em;
+			width: 1.2em;
+			min-height: 1.2em;
+			height: 1.2em;
+			border: 0.1em solid black;
+			border-radius: 0.4em;
+		}
+	}
+
+	> span.label {
+		margin: 0.25em;
+		color: black;
+		font-size: 1em;
+		line-height: 1.2;
+		transition: all 0.3s ease;
+		padding-left: 0.2em;
+		text-decoration: line-through;
+		text-decoration-color: transparent;
+		text-decoration-thickness: 0.1em;
+		user-select: none;
+		-webkit-user-select: none;
+	}
+}
+
+.select {
+	margin: 0.25rem 0;
+
+	> div {
+		width: 100%;
+		background-color: $input-background;
+		border: 0.1rem solid #646cff90;
+		transition: border-color 0.2s ease;
+		border-radius: 0.25rem;
+		line-height: 1.1;
+
+		display: grid;
+		grid-template-areas: 'select';
+		align-items: center;
+
+		select {
+			width: 100%;
+			appearance: none;
+			border: none;
+			outline: none;
+			margin: 0;
+			padding: 0.6em (0.75em + 0.8em + 0.5em) 0.5em 0.75em;
+			font-family: inherit;
+			font-size: inherit;
+			cursor: inherit;
+			line-height: inherit;
+		}
+
+		select,
+		&::after {
+			grid-area: select;
+		}
+
+		&::after {
+			content: '';
+			pointer-events: none;
+			width: 0.8em;
+			height: 0.5em;
+			margin-right: 0.5em;
+			clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+			background-color: #646cffbb;
+			transition: background-color 0.2s ease;
+
+			justify-self: end;
+		}
+
+		&:hover {
+			border-color: #646cff;
+
+			&::after {
+				background-color: #646cff;
+			}
+		}
+	}
+}
+
+.input {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0.25em 0;
+
+	> input {
+		width: 100%;
+		border-radius: 0.25rem;
+		border: 0.1rem solid #ccc;
+		background-color: $input-background;
+		color: #eee;
+		padding: 0.5em;
+		font-size: 1em;
+		margin: 0;
+	}
+}

@@ -1,0 +1,251 @@
+@use './shared.scss' as *;
+
+:root {
+	font-family: 'InterVariable', sans-serif;
+	font-weight: 400;
+
+	color-scheme: dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #2222;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	font-weight: 500;
+	color: #646cff;
+	text-decoration: inherit;
+}
+a:hover {
+	color: #8187ff;
+}
+
+html,
+body {
+	margin: 0;
+	min-width: 320px;
+	max-width: 100%;
+	overflow-x: hidden;
+	min-height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	place-items: center;
+}
+
+#root {
+	max-width: $max-screen-width;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+h1 {
+	font-size: 2rem;
+	line-height: 1.1;
+	margin: 0.5rem 0;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 1.5rem;
+	line-height: 1.1;
+	margin: 0.4rem 0;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 1.25rem;
+	line-height: 1.1;
+	margin: 0.2rem 0;
+	font-weight: 600;
+}
+
+button {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	margin: 0.125rem;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: $input-background;
+	cursor: pointer;
+	transition: border-color 0.25s ease;
+
+	&:hover {
+		border-color: #646cff;
+	}
+
+	&:focus,
+	&:focus-visible {
+		outline: 2px auto -webkit-focus-ring-color;
+	}
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+
+	button[type='submit'] {
+		margin-top: 0.5rem;
+	}
+}
+
+label {
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 1;
+	margin: 0 0.25rem 0.25rem;
+}
+
+pre {
+	margin: 0;
+	padding: 0.75rem;
+	background-color: #111;
+	border-radius: 0.25rem;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+@media (max-width: calc(540px + 1rem)) {
+	section {
+		min-width: 0 !important;
+		width: calc(100% - 1rem);
+	}
+}
+
+section {
+	border-radius: 0.5rem;
+	background-color: #222;
+	box-shadow: 1px 4px 16px 2px #0008;
+	margin: (2rem + $navbar-height) 0.5rem (4rem + $navbar-height);
+	min-width: 540px;
+	max-width: 100%;
+
+	> header {
+		border-top-left-radius: 0.5rem;
+		border-top-right-radius: 0.5rem;
+		padding: 2rem;
+		color: #111;
+		font-size: 2rem;
+		font-weight: 700;
+		text-align: center;
+	}
+
+	> div.content {
+		border-bottom-left-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+		padding: 2rem;
+
+		display: flex;
+		flex-direction: column;
+
+		&.wide-content {
+			padding: 1.25rem 0;
+		}
+
+		/* Formatting options */
+
+		&.text-box {
+			gap: 1rem;
+			p {
+				margin: 0;
+			}
+		}
+	}
+}
+
+dl {
+	display: grid;
+	grid-template-columns: fit-content(30%) auto;
+	font-size: 1.2rem;
+	line-height: 1;
+
+	> dt {
+		grid-column: 1;
+		padding: 0.5rem 0;
+		justify-content: flex-end;
+		display: flex;
+		align-items: center;
+	}
+
+	> dd {
+		grid-column: 2;
+		margin: 0;
+		padding: 0.5rem 0.75rem;
+
+		display: flex;
+		align-items: center;
+	}
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+
+.menu-item {
+	> li {
+		border-bottom: #ccc solid 1px;
+
+		> div {
+			font-size: 1rem;
+			font-weight: 500;
+			color: #eee;
+			padding: 0.8rem 0.6rem;
+			background-color: #ddd0;
+			transition: all 0.1s ease-in;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+
+			&:hover {
+				background-color: #ddd2;
+			}
+		}
+	}
+
+	&:last-child > li {
+		border: none;
+	}
+}
+
+button.menu-item {
+	margin: 0;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+// TODO:
+// - Fix this to support light theme
+// - Semi-low priority, app will mostly be used when it's dark outside
+//
+// @media (prefers-color-scheme: light) {
+// 	:root {
+// 		color: #213547;
+// 		background-color: #ffffff;
+// 	}
+// 	a:hover {
+// 		color: #747bff;
+// 	}
+// 	button {
+// 		background-color: #f9f9f9;
+// 	}
+// }

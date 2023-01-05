@@ -1,0 +1,96 @@
+@use './shared.scss' as *;
+
+div.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: $navbar-height;
+	z-index: 16;
+
+	background-color: #111;
+	box-shadow: 0px 3px 0px #aaaaaa40;
+
+	> ul {
+		margin: 0 auto;
+		padding: 0 0.25rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		height: 100%;
+		max-width: $max-screen-width;
+
+		> div {
+			display: flex;
+			height: 100%;
+
+			> a > li,
+			> button > li {
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				color: #eee;
+				background-color: #eee0;
+				transition: background-color 0.3s ease;
+
+				&:hover {
+					background-color: #eee1;
+				}
+
+				&.navbar-item-text {
+					padding: 0 1.25rem;
+				}
+
+				&.navbar-item-icon {
+					height: $navbar-height;
+				}
+			}
+
+			> button {
+				margin: 0;
+				padding: 0;
+				border: none;
+				border-radius: 0;
+			}
+		}
+	}
+}
+
+span.spin-loader {
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 50%;
+	border: 0.25em solid #ddd;
+	border-color: #ddd transparent;
+	animation: spin 1.2s linear infinite;
+
+	&.default {
+		width: 1em;
+		height: 1em;
+	}
+
+	&.medium {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	&.large {
+		width: 5rem;
+		height: 5rem;
+	}
+}
+
+div.icon {
+	line-height: 0;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

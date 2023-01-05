@@ -1,0 +1,417 @@
+{
+	"full": {
+		"name": "Städrutin Kistan 2.0 (Fullständig)",
+		"areas": {
+			"kistan": {
+				"name": "Kistan 2.0",
+				"categories": {
+					"micros": {
+						"name": "Mikros",
+						"checks": {
+							"counters": "Bänkarna vid mikrovågsugnarna torkade",
+							"usable": "Alla mikrovågsugnar i användbart skick",
+							"sinks": "Diskhoarna rengjorda"
+						}
+					},
+					"floors": {
+						"name": "Golv och Bord",
+						"checks": {
+							"furnitureRestored": "Möblering återställd enligt ritning",
+							"tableSigns": "Bordsskyltar inplockade",
+							"tablesWiped": "Borden torkade",
+							"chairsPutUp": "Stolarna uppställda upp och ned",
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat",
+							"sceneSwept": "Scenen sopad",
+							"sceneMopped": "Scenen moppad med snålt med vatten"
+						}
+					},
+					"trash": {
+						"name": "Kvarglömt/Sopor",
+						"checks": {
+							"lostAndFound": "Samla in kvarglömda saker och lägg i lost and found lådan",
+							"trashcans": "ALLA sopor slängda och nya soppåsar i tunnorna"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"terraceDoor": "Terrasdörren låst",
+							"lightning": "Belysningen avstängd",
+							"doors": "Dörrarna stängda",
+							"windows": "Fönstrena stängda och låsta",
+							"allWindows": "ALLA fönster stängda"
+						}
+					}
+				}
+			},
+			"bar": {
+				"name": "Baren",
+				"categories": {
+					"back": {
+						"name": "Kylar/Tomglas",
+						"checks": {
+							"glassCases": "Fulla tomglasbackar ställda i spritförådet",
+							"glassBins": "Tomglastunnorna tömda",
+							"fridgeDoors": "Kyldörrar tvättade efter behov",
+							"everythingClosed": "Se till att alla kyldörrar och lådor är ordentligt stängda"
+						}
+					},
+					"surfaces": {
+						"name": "Bänkar/Golv/Sopor",
+						"checks": {
+							"emptyAndDried": "Alla ytor tomma och torkade",
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat",
+							"trash": "Tömma soppåsarna",
+							"sink": "Vasken rengjord",
+							"runoff": "Tömma avrinningen från batteriet under bardisken",
+							"everythingBack": "Allt tillbaka på sin plats"
+						}
+					},
+					"money": {
+						"name": "Pengar/Liggaren",
+						"checks": {
+							"ledger": "Kontrollerat att alla är utskrivna ur liggaren",
+							"zReport": "Z-Kvitto draget och ny växel i kassan"
+						}
+					},
+					"alcohol": {
+						"name": "Alkohol",
+						"checks": {
+							"barEquipment": "All barutrustning handdiskade",
+							"bottlesCorked": "Korkar på alla flaskor",
+							"mixersRemoved": "Groggvirke tömt ur batteriet",
+							"tapsFlushed": "Tappen spolad och rengjord",
+							"tapHandlesFlushed": "Skruva loss handtagen på tappen. Häll tre mätglas genom hålen",
+							"tapFilter": "Rengör tappens filter"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"lightning": "Belysningen avstängd",
+							"amplifier": "Slutstegen avstängda",
+							"shutter": "Jalusi neddragen och dörren låst",
+							"alarm": "LARMA!"
+						}
+					}
+				}
+			},
+			"kitchen": {
+				"name": "Köket",
+				"categories": {
+					"dishes": {
+						"name": "Disk",
+						"checks": {
+							"dishesDone": "All disk diskad",
+							"dryDishesBack": "All torr disk ställd på sin plats",
+							"dishwasherOff": "Diskmaskinen tömd, rengjord och avstängd",
+							"dishwasherParts": "Alla delar till diskmaskinen rengjorda"
+						}
+					},
+					"cleaning": {
+						"name": "Rengöring",
+						"checks": {
+							"coffeMakerEmpty": "Kaffekokare i köket avstängda och tömda på kaffe och sump",
+							"coffeMakerClean": "Kaffekokare rengjorda",
+							"sink": "Diskhon rengjord",
+							"tiledWalls": "De kaklade väggarna torkade",
+							"counters": "Alla bänkarna torkade och tomma",
+							"ovens": "Ugnarna rengjorda",
+							"stove": "Spisen rengjord",
+							"heatingCabinet": "Värmeskåpet rengjort"
+						}
+					},
+					"floor": {
+						"name": "Sopor/Golv",
+						"checks": {
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat",
+							"trash": "ALLA sopor slängda och inga nya påsar uppsatta",
+							"leftovers": "Matrester i burkar i kylskåpet"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"window": "Köksfönstret stängt",
+							"storageThings": "Eventuellt material från förrådet skall vara tillbaka, INTE lämnas i köket.",
+							"countersEmpty": "Alla bänkytor tomma"
+						}
+					}
+				}
+			},
+			"outside": {
+				"name": "Utanför Kistan 2.0",
+				"categories": {
+					"all": {
+						"checks": {
+							"streetSign": "Gatuskrikarna inplockade",
+							"toilets": "Toaletterna utanför Kistan 2.0 städade efter behov",
+							"posters": "Eventaffischer nedplockade",
+							"compressor": "Sopor slängda i kompressorn",
+							"emptyBottles": "Tomglas slängda",
+							"littering": "Rengöra eventuell nedskräpning mellan Kistan 2.0 och toaletterna"
+						}
+					}
+				}
+			},
+			"hallway": {
+				"name": "Korridoren Kistan 2.0",
+				"categories": {
+					"all": {
+						"checks": {
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat",
+							"nothingLeft": "Inga saker kvar i korridoren",
+							"lostAndFound": "Eventuella kvarglömda saker i lost and found",
+							"storageThings": "Eventuellt material från andra förråd ska vara tillbaka, INTE lämnas i korridoren."
+						}
+					}
+				}
+			},
+			"broomCloset": {
+				"name": "Städskrubben",
+				"categories": {
+					"all": {
+						"checks": {
+							"buckets": "Hinkar rengjorda och ställt upp och ned på nedersta hyllan",
+							"mops": "Moppar ursköljda, urvridna och upphängda på rätt plats",
+							"dishingEquipment": "Diskhandskar, diskborstar och disksvampar (som ej är till köket) ursköljda och liggandes nedersta hyllan",
+							"brooms": "Sopborstar rengjorda och hängandes på rätt plats",
+							"sink": "Tvätthon rengjord",
+							"glassAndPorcelain": "Tomglas/porslin och andra sopor slängda",
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat",
+							"floorScraped": "Golvet skrapat så att inget vatten finns på golvet"
+						}
+					}
+				}
+			},
+			"spritis": {
+				"name": "Spritförrådet",
+				"categories": {
+					"all": {
+						"name": null,
+						"checks": {
+							"noBelongings": "INGA personliga ägodelar kvar",
+							"aislesEmpty": "Inget i gångarna",
+							"floors": "Golvet sopat och moppat efter behov",
+							"storageThings": "Eventuellt material från andra förråd ska vara tillbaka, INTE lämnas i spritförrådet."
+						}
+					}
+				}
+			},
+			"storeroom": {
+				"name": "Förrådet",
+				"categories": {
+					"all": {
+						"checks": {
+							"thingsBack": "Allt material som har använts skall läggas tillbaka i rätt låda/vagn",
+							"noBoxesOnFloor": "Inga lådor kvar på golvet",
+							"nothingOnFloor": "Ingenting liggandes på golvet",
+							"floorSwept": "Sopat efter behov",
+							"floorMopped": "Moppat efter behov"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"doorShut": "Dörr stängd"
+						}
+					}
+				}
+			}
+		}
+	},
+	"small": {
+		"name": "Städrutin Kistan 2.0 (Mindre)",
+		"areas": {
+			"kistan": {
+				"name": "Kistan 2.0",
+				"categories": {
+					"floors": {
+						"name": "Golv och Bord",
+						"checks": {
+							"furnitureRestored": "Möblering återställd enligt ritning",
+							"tableSigns": "Bordsskyltar inplockade",
+							"tablesWiped": "Borden torkade",
+							"chairsPutUp": "Stolarna uppställda upp och ned",
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat efter behov",
+							"sceneSwept": "Scenen sopad",
+							"sceneMopped": "Scenen moppad med snålt med vatten efter behov"
+						}
+					},
+					"micros": {
+						"name": "Mikros",
+						"checks": {
+							"counters": "Bänkarna vid mikrovågsugnarna torkade",
+							"usable": "Alla mikrovågsugnar i användbart skick"
+						}
+					},
+					"trash": {
+						"name": "Kvarglömt/Sopor",
+						"checks": {
+							"lostAndFound": "Samla in kvarglömda saker och lägg i lost and found lådan",
+							"trashcans": "ALLA sopor slängda och nya soppåsar i tunnorna"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"windows": "Fönstrena stängda och låsta",
+							"terraceDoor": "Terrasdörren låst",
+							"lightning": "Belysningen avstängd",
+							"doors": "Dörrarna stängda"
+						}
+					}
+				}
+			},
+			"bar": {
+				"name": "Baren",
+				"categories": {
+					"softDrinks": {
+						"name": "Läsk/Kaffe",
+						"checks": {
+							"coffeemaking": "Kaffemaskinen och mjölkskummaren rengjorda. Mjölkskummaren tömd",
+							"glassBins": "Tomglastunnorna tömda",
+							"glassCases": "Fulla tomglasbackar ställda i spritförådet",
+							"everythingClosed": "Se till att alla kyldörrar och lådor är ordentligt stängda"
+						}
+					},
+					"surfaces": {
+						"name": "Bänkar/Golv/Sopor",
+						"checks": {
+							"emptyAndDried": "Alla ytor tomma och torkade",
+							"runoff": "Tömma avrinningen från batteriet under bardisken",
+							"sink": "Vasken rengjord",
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat efter behov",
+							"trash": "Tömma soppåsarna",
+							"everythingBack": "Allt tillbaka på sin plats"
+						}
+					},
+					"money": {
+						"name": "Pengar/Liggaren",
+						"checks": {
+							"zReport": "Z-Kvitto draget och ny växel i kassan",
+							"ledger": "Kontrollerat att alla är utskrivna ur liggaren"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"screenAndComputer": "Skärmar och dator avstängd",
+							"lightning": "Belysningen avstängd",
+							"jalusei": "Jalusi neddragen och dörren låst",
+							"alarm": "LARMA!"
+						}
+					}
+				}
+			},
+			"kitchen": {
+				"name": "Köket (om det har använts)",
+				"categories": {
+					"dishes": {
+						"name": "Disk",
+						"checks": {
+							"dishesDone": "All disk diskad",
+							"dryDishesBack": "All torr disk ställd på sin plats",
+							"dishwasherOff": "Diskmaskinen tömd, rengjord och avstängd",
+							"dishwasherParts": "Alla delar till diskmaskinen rengjorda"
+						}
+					},
+					"cleaning": {
+						"name": "Rengöring",
+						"checks": {
+							"coffeMakerEmpty": "Kaffekokare i köket avstängda och tömda på kaffe och sump",
+							"tiledWalls": "De kaklade väggarna torkade",
+							"counters": "Alla bänkarna torkade och tomma",
+							"ovens": "Ugnarna rengjorda",
+							"stove": "Spisen rengjord",
+							"heatingCabinet": "Värmeskåpet rengjort",
+							"sink": "Diskhon rengjord"
+						}
+					},
+					"floor": {
+						"name": "Sopor/Golv",
+						"checks": {
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat efter behov",
+							"trash": "ALLA sopor slängda och inga nya påsar uppsatta",
+							"leftovers": "Matrester i burkar i kylskåpet"
+						}
+					},
+					"lasts": {
+						"name": "Sista rycket",
+						"checks": {
+							"window": "Köksfönstret stängt",
+							"storageThings": "Eventuellt material från förrådet skall vara tillbaka, INTE lämnas i köket.",
+							"countersEmpty": "Alla bänkytor tomma"
+						}
+					}
+				}
+			},
+			"outside": {
+				"name": "Utanför Kistan 2.0",
+				"categories": {
+					"all": {
+						"checks": {
+							"streetSign": "Gatuskrikarna inplockade",
+							"posters": "Eventaffischer nedplockade",
+							"toilets": "Toaletterna utanför Kistan 2.0 städade efter behov",
+							"compressor": "Sopor slängda i kompressorn",
+							"emptyBottles": "Tomglas slängda",
+							"littering": "Rengöra eventuell nedskräpning mellan Kistan 2.0 och toaletterna"
+						}
+					}
+				}
+			},
+			"hallway": {
+				"name": "Korridoren Kistan 2.0",
+				"categories": {
+					"all": {
+						"checks": {
+							"lostAndFound": "Eventuella kvarglömda saker i lost and found",
+							"storageTtuffs": "Eventuellt material från andra förråd ska vara tillbaka, INTE lämnas i korridoren.",
+							"floorSwept": "Golvet sopat",
+							"floorMopped": "Golvet moppat efter behov"
+						}
+					}
+				}
+			},
+			"broomCloset": {
+				"name": "Städskrubben",
+				"categories": {
+					"all": {
+						"checks": {
+							"buckets": "Hinkar rengjorda och ställt upp och ned på nedersta hyllan",
+							"mops": "Moppar ursköljda, urvridna och upphängda på rätt plats om de använts",
+							"brooms": "Sopborstar rengjorda och hängandes på rätt plats",
+							"dishingEquipment": "Diskhandskar, diskborstar och disksvampar (som ej är till köket) ursköljda och liggandes nedersta hyllan",
+							"floorScraped": "Golvet skrapat så att inget vatten finns på golvet"
+						}
+					}
+				}
+			},
+			"spritis": {
+				"name": "Spritförrådet",
+				"categories": {
+					"all": {
+						"checks": {
+							"noBelongings": "INGA personliga ägodelar kvar",
+							"aislesEmpty": "Inget i gångarna",
+							"floors": "Golvet sopat och moppat efter behov",
+							"storageThings": "Eventuellt material från andra förråd ska vara tillbaka, INTE lämnas i spritförrådet."
+						}
+					}
+				}
+			}
+		}
+	},
+	"comments": {
+		"pestyLeftovers": "OBS: VIKTIGT ATT MATRESTER OCH KLADD ÄR BORTA! ANNARS BLIR DET SKADEDJUR!"
+	}
+}

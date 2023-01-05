@@ -1,0 +1,153 @@
+{
+	"type": "full",
+	"version": "2.2",
+	"sortWeight": -1,
+	"areas": [
+		{
+			"name": "kistan",
+			"categories": [
+				{ "name": "micros", "checks": ["counters", "usable", "sinks"] },
+				{
+					"name": "floors",
+					"checks": [
+						"furnitureRestored",
+						"tableSigns",
+						"tablesWiped",
+						"chairsPutUp",
+						"floorSwept",
+						"floorMopped",
+						"sceneSwept",
+						"sceneMopped"
+					]
+				},
+				{ "name": "trash", "checks": ["lostAndFound", "trashcans"] },
+				{
+					"name": "lasts",
+					"checks": ["terraceDoor", "lightning", "doors", "windows", "allWindows"]
+				}
+			]
+		},
+		{
+			"name": "bar",
+			"categories": [
+				{
+					"name": "back",
+					"checks": ["glassCases", "glassBins", "fridgeDoors", "everythingClosed"]
+				},
+				{
+					"name": "surfaces",
+					"checks": [
+						"emptyAndDried",
+						"floorSwept",
+						"floorMopped",
+						"trash",
+						"sink",
+						"runoff",
+						"everythingBack"
+					]
+				},
+				{ "name": "money", "checks": ["ledger", "zReport"] },
+				{
+					"name": "alcohol",
+					"checks": [
+						"barEquipment",
+						"bottlesCorked",
+						"mixersRemoved",
+						"tapsFlushed",
+						"tapHandlesFlushed",
+						"tapFilter"
+					]
+				},
+				{ "name": "lasts", "checks": ["lightning", "amplifier", "shutter", "alarm"] }
+			]
+		},
+		{
+			"name": "kitchen",
+			"categories": [
+				{
+					"name": "dishes",
+					"checks": ["dishesDone", "dryDishesBack", "dishwasherOff", "dishwasherParts"]
+				},
+				{
+					"name": "cleaning",
+					"checks": [
+						"coffeMakerEmpty",
+						"coffeMakerClean",
+						"sink",
+						"tiledWalls",
+						"counters",
+						"ovens",
+						"stove",
+						"heatingCabinet"
+					]
+				},
+				{ "name": "floor", "checks": ["floorSwept", "floorMopped", "trash", "leftovers"] },
+				{ "name": "lasts", "checks": ["window", "storageThings", "countersEmpty"] }
+			],
+			"comment": "pestyLeftovers"
+		},
+		{
+			"name": "outside",
+			"categories": [
+				{
+					"name": "all",
+					"checks": ["streetSign", "toilets", "posters", "compressor", "emptyBottles", "littering"]
+				}
+			]
+		},
+		{
+			"name": "hallway",
+			"categories": [
+				{
+					"name": "all",
+					"checks": ["floorSwept", "floorMopped", "nothingLeft", "lostAndFound", "storageThings"]
+				}
+			]
+		},
+		{
+			"name": "broomCloset",
+			"categories": [
+				{
+					"name": "all",
+					"checks": [
+						"buckets",
+						"mops",
+						"dishingEquipment",
+						"brooms",
+						"sink",
+						"glassAndPorcelain",
+						"floorSwept",
+						"floorMopped",
+						"floorScraped"
+					]
+				}
+			]
+		},
+		{
+			"name": "spritis",
+			"categories": [
+				{ "name": "all", "checks": ["noBelongings", "aislesEmpty", "floors", "storageThings"] }
+			]
+		},
+		{
+			"name": "storeroom",
+			"categories": [
+				{
+					"name": "all",
+					"checks": ["thingsBack", "noBoxesOnFloor", "nothingOnFloor", "floorSwept", "floorMopped"]
+				},
+				{ "name": "lasts", "checks": ["doorShut"] }
+			]
+		}
+	],
+	"colors": {
+		"kistan": "#2980b9",
+		"bar": "#e67e22",
+		"kitchen": "#9b59b6",
+		"outside": "#00b894",
+		"hallway": "#fab1a0",
+		"broomCloset": "#34e7e4",
+		"spritis": "#ef5777",
+		"storeroom": "#40407a"
+	}
+}
