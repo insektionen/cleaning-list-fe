@@ -82,6 +82,10 @@ button {
 	cursor: pointer;
 	transition: border-color 0.25s ease;
 
+	&.icon-button {
+		padding: 0.6em 0.8em;
+	}
+
 	&:hover {
 		border-color: #646cff;
 	}

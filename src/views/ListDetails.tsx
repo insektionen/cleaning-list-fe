@@ -7,13 +7,14 @@ import Input from '../components/Input';
 import Page from '../components/Page';
 import Spin from '../components/Spin';
 import NotSubmitted from '../icons/NotSubmitted';
+import Reload from '../icons/Reload';
 import Submitted from '../icons/Submitted';
 import Verified from '../icons/Verified';
 import listApi from '../list/list.api';
 import { List } from '../list/list.model';
 import { useUser } from '../user/user.context';
 import { roleAtLeast } from '../util/minRole';
-import { dashlessDateRegex, dateRegex, phoneNumberRegex } from '../util/regex';
+import { phoneNumberRegex } from '../util/regex';
 import { useTranslate } from '../util/translation';
 import useInputRef from '../util/useInputRef';
 import validateDate from '../util/validateDate';
@@ -29,6 +30,7 @@ export default function ListDetails() {
 	const [loading, setLoading] = useState(true);
 	const [list, setList] = useState<List>();
 	const [isEditing, setIsEditing] = useState(false);
+	const [isReloading, setIsReloading] = useState(false);
 	const [editedFields, setEditedFields] = useState<{
 		changes: Record<string, boolean | undefined>;
 		alteredBy: 'user' | 'saver';
@@ -42,8 +44,7 @@ export default function ListDetails() {
 
 	const canEdit = useMemo(
 		() =>
-			(user.handle === list?.createdBy.handle && !list?.submitted) ||
-			(roleAtLeast(user.role, 'MOD') && !list?.verified),
+			(user.handle === list?.createdBy.handle || roleAtLeast(user.role, 'MOD')) && !list?.submitted,
 		[user, list]
 	);
 	const canVerify = useMemo(
@@ -54,6 +55,10 @@ export default function ListDetails() {
 				(user.role === 'MANAGER' && user.handle !== list.createdBy.handle)),
 		[user, list]
 	);
+	const canReload = useMemo(() => {
+		if (!list) return false;
+		return !list.submitted;
+	}, [list]);
 
 	useEffect(() => {
 		const id = Number(listId);
@@ -228,17 +233,37 @@ export default function ListDetails() {
 		setUpdatingList(false);
 	}
 
+	function reload() {
+		setIsReloading(true);
+
+		const toastId = toast.loading('Reloading', { duration: Infinity });
+
+		listApi
+			.findList(Number(listId))
+			.then(setList)
+			.then(() => toast.success('Reloaded list', { duration: 2_000, id: toastId }))
+			.catch(() => toast.dismiss(toastId))
+			.finally(() => setIsReloading(false));
+	}
+
 	return (
 		<Page className="list-details">
 			{loading || loadingTranslation ? (
 				<Spin size="medium" />
 			) : list ? (
 				<>
-					{canEdit && user.handle !== list.createdBy.handle && (
-						<button className="toggle-edit" onClick={() => setIsEditing((isEditing) => !isEditing)}>
-							{isEditing ? 'Stop Editing' : 'Begin Editing'}
-						</button>
-					)}
+					<div className="fixed-actions">
+						{canEdit && user.handle !== list.createdBy.handle && (
+							<button onClick={() => setIsEditing((isEditing) => !isEditing)}>
+								{isEditing ? 'Stop Editing' : 'Begin Editing'}
+							</button>
+						)}
+						{!isEditing && canReload && (
+							<button onClick={reload} disabled={isReloading} className="icon-button">
+								<Reload size="1.2rem" />
+							</button>
+						)}
+					</div>
 					<h1>{t(list.type, 'name')}</h1>
 					{list.structure.map((area, areaIndex) => (
 						<div key={area.name} className="area">
