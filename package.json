@@ -8,6 +8,7 @@
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"serve": "serve dist/ -l 8080",
+		"serve:prod": "sed -e \"s#REPLACE#$API_BASE_URL#g\" dist/env.js > dist/apiURL.js && serve dist/ -l 8080",
 		"lint": "prettier --check src *.md *.json",
 		"format": "prettier --write src *.md *.json"
 	},

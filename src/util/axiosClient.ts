@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { toast } from 'react-hot-toast';
 
 const client = axios.create({
-	baseURL: import.meta.env.VITE_API_BASE_URL,
+	baseURL: import.meta.env.PROD ? globalThis.API_BASE_URL : import.meta.env.VITE_API_BASE_URL,
 });
 
 let tokenInterceptor: number | null = null;
