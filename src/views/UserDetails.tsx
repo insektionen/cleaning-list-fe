@@ -153,30 +153,35 @@ export default function UserDetails() {
 							<button onClick={() => setIsEditing(true)}>Edit User</button>
 						))}
 
-					<button style={{ marginTop: '0.5rem' }} onClick={invalidateToken}>
-						Sign Out
-					</button>
+					{ownUser && (
+						<button style={{ marginTop: '0.5rem' }} onClick={invalidateToken}>
+							Sign Out
+						</button>
+					)}
 
-					<div
-						style={{
-							height: '0.1rem',
-							width: '100%',
-							backgroundColor: 'currentcolor',
-							margin: '1rem 0',
-						}}
-					/>
-
-					<h3 style={{ marginBottom: '0.5rem' }}>Change password</h3>
-					<Input
-						value={currentPassword}
-						onChange={setCurrentPassword}
-						title={ownUser ? 'Current password' : 'Your password'}
-						type="password"
-					/>
-					<Input value={password} onChange={setPassword} title="New password" type="password" />
-					<button onClick={changePassword} style={{ marginTop: '0.5rem' }}>
-						{loadingSave ? <Spin /> : 'Change password'}
-					</button>
+					{(ownUser || (main.role === 'ADMIN' && user.role !== 'ADMIN')) && (
+						<>
+							<div
+								style={{
+									height: '0.1rem',
+									width: '100%',
+									backgroundColor: 'currentcolor',
+									margin: '1rem 0',
+								}}
+							/>
+							<h3 style={{ marginBottom: '0.5rem' }}>Change password</h3>
+							<Input
+								value={currentPassword}
+								onChange={setCurrentPassword}
+								title={ownUser ? 'Current password' : 'Your password'}
+								type="password"
+							/>
+							<Input value={password} onChange={setPassword} title="New password" type="password" />
+							<button onClick={changePassword} style={{ marginTop: '0.5rem' }}>
+								{loadingSave ? <Spin /> : 'Change password'}
+							</button>
+						</>
+					)}
 				</>
 			) : (
 				'Something went wrong'
