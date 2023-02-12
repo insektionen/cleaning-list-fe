@@ -101,6 +101,7 @@ label.checkbox {
 			outline: none;
 			margin: 0;
 			padding: 0.6em (0.75em + 0.8em + 0.5em) 0.5em 0.75em;
+			background-color: $input-background;
 			font-family: inherit;
 			font-size: inherit;
 			cursor: inherit;
@@ -132,6 +133,25 @@ label.checkbox {
 				background-color: #646cff;
 			}
 		}
+	}
+}
+
+.date-picker {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0.25em 0;
+
+	> input[type='date'] {
+		width: 100%;
+		border-radius: 0.25rem;
+		border: 0.1rem solid #ccc;
+		font-family: inherit;
+		background-color: $input-background;
+		color: #eee;
+		padding: 0.5em;
+		font-size: 1em;
+		margin: 0;
 	}
 }
 

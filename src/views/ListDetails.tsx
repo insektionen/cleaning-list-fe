@@ -1,7 +1,9 @@
+import moment from 'moment';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router';
 import Checkbox from '../components/Checkbox';
+import DatePicker from '../components/DatePicker';
 import DetailsRow from '../components/DetailsRow';
 import Input from '../components/Input';
 import Page from '../components/Page';
@@ -156,6 +158,8 @@ export default function ListDetails() {
 		const date = dateRef.current?.value;
 		const comment = commentRef.current?.value || null;
 
+		console.log(date);
+
 		const missing = [
 			{ name: 'Name', val: responsible },
 			{ name: 'Phone number', val: phoneNumber },
@@ -166,6 +170,7 @@ export default function ListDetails() {
 		if (!phoneNumber.match(phoneNumberRegex)) return toast.error('Phone number is invalid');
 		const eventDate = validateDate(date);
 		if (eventDate === null) return toast.error('Date is invalid, must be in YYYY-MM-DD format');
+		if (moment().isBefore(eventDate)) return toast.error('Date cannot be in the future');
 
 		setUpdatingList(true);
 
@@ -309,7 +314,13 @@ export default function ListDetails() {
 							>
 								<Input ref={nameRef} title="Responsible" width="wide" />
 								<Input ref={phoneRef} title="Phone number" width="wide" />
-								<Input ref={dateRef} title="Date of Event" width="wide" />
+								<DatePicker
+									ref={dateRef}
+									title="Date of Event"
+									value="today"
+									max="today"
+									width="wide"
+								/>
 								<Input ref={commentRef} title="Comment" width="wide" />
 
 								<button type="submit" disabled={updatingList}>
