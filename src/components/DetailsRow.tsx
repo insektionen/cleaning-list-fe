@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
 import Input from './Input';
 
 type DetailsRowProps<T extends string> =
 	| {
 			title: string;
 			currentValue?: string;
+			displayValue?: ReactNode;
 			editable?: false | undefined;
 			value?: T | undefined;
 			onChange?: (val?: T) => void;
@@ -11,6 +13,7 @@ type DetailsRowProps<T extends string> =
 	| {
 			title: string;
 			currentValue?: string;
+			displayValue?: ReactNode;
 			editable: 'input' | 'select';
 			value: T | undefined;
 			onChange: (val?: T) => void;
@@ -19,6 +22,7 @@ type DetailsRowProps<T extends string> =
 export default function DetailsRow<T extends string>({
 	title,
 	currentValue,
+	displayValue = currentValue,
 	editable,
 	value,
 	onChange,
@@ -28,7 +32,7 @@ export default function DetailsRow<T extends string>({
 			<dt>{title}</dt>
 			<dd>
 				{!editable ? (
-					<span style={{ flex: 1 }}>{currentValue ?? <b>–</b>}</span>
+					<span style={{ flex: 1 }}>{displayValue ?? <b>–</b>}</span>
 				) : editable === 'input' ? (
 					<Input
 						value={value ?? currentValue ?? ''}

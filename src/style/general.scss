@@ -172,10 +172,10 @@ dl {
 	grid-template-columns: fit-content(30%) auto;
 	font-size: 1.2rem;
 	line-height: 1;
+	gap: 1rem 0.75rem;
 
 	> dt {
 		grid-column: 1;
-		padding: 0.5rem 0;
 		justify-content: flex-end;
 		display: flex;
 		align-items: center;
@@ -184,7 +184,6 @@ dl {
 	> dd {
 		grid-column: 2;
 		margin: 0;
-		padding: 0.5rem 0.75rem;
 
 		display: flex;
 		align-items: center;

@@ -133,6 +133,7 @@ export default function UserDetails() {
 						<DetailsRow
 							title="Email"
 							currentValue={user.email}
+							displayValue={breakableEmail(user.email)}
 							editable={isEditing && 'input'}
 							value={email}
 							onChange={setEmail}
@@ -188,4 +189,22 @@ export default function UserDetails() {
 			)}
 		</Page>
 	);
+}
+
+/**
+ * Creates an array of react nodes out of the element, adding word breaks around special characters
+ */
+function breakableEmail(email?: string) {
+	if (!email) return email;
+
+	const res: (JSX.Element | string)[] = [email.charAt(0)];
+	for (let i = 1; i < email.length; i++) {
+		const char = email.charAt(i);
+
+		if (['@', '.', '_'].includes(char)) res.push(<wbr />, char, <wbr />);
+		else if (typeof res[res.length - 1] === 'string') res[res.length - 1] += char;
+		else res.push(char);
+	}
+
+	return res;
 }
