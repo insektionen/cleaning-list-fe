@@ -26,7 +26,7 @@ export default function UserDetails() {
 	const [password, setPassword] = useState('');
 
 	const ownUser = !handle || handle === main.handle;
-	const canEdit = ownUser || (user && roleAtLeast(main.role, user.role));
+	const canEdit = ownUser || (user && !roleAtLeast(user.role, main.role));
 
 	useEffect(() => {
 		if (!handle || main.handle === handle.toLowerCase()) {
