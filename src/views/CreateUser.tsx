@@ -8,12 +8,11 @@ import Spin from '../components/Spin';
 import { Role } from '../user/types';
 import userApi from '../user/user.api';
 import { useUser } from '../user/user.context';
-import { roleAtLeast } from '../util/minRole';
 import { usernameRegex } from '../util/regex';
 import { capitalize } from '../util/text';
 import useInputRef from '../util/useInputRef';
 
-const defaultOptions: Role[] = ['BASE', 'MANAGER', 'MOD'];
+const defaultOptions: Role[] = ['BASE', 'MANAGER'];
 
 export default function CreateUser() {
 	const navigate = useNavigate();
@@ -25,7 +24,8 @@ export default function CreateUser() {
 	const [role, setRole] = useState<Role>('BASE');
 	const [loading, setLoading] = useState(false);
 
-	const options: Role[] = user.role === 'ADMIN' ? [...defaultOptions, 'ADMIN'] : defaultOptions;
+	const options: Role[] =
+		user.role === 'ADMIN' ? [...defaultOptions, 'MOD', 'ADMIN'] : defaultOptions;
 
 	async function submit() {
 		const username = userRef.current?.value;
@@ -38,7 +38,14 @@ export default function CreateUser() {
 			return toast.error('Username can only contain alphanumeric characters, dash, and underscore');
 
 		if (
-			roleAtLeast(role, 'MOD') &&
+			role === 'ADMIN' &&
+			!confirm(
+				'Are you sure you want to create a new user with admin permissions and all the power therein?\n\nThis action is irreversable.'
+			)
+		)
+			return;
+		if (
+			role === 'MOD' &&
 			!confirm(`Are you sure you want to create a new user with ${role.toLowerCase()} permissions?`)
 		)
 			return;
