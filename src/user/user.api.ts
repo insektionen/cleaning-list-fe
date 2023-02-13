@@ -4,6 +4,7 @@ import { MinimalUser, MyUser, Role, User } from './types';
 type UpdateUserParams = {
 	name?: string;
 	email?: string;
+	role?: Role;
 	password?: string;
 	currentPassword?: string;
 };

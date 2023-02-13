@@ -329,10 +329,10 @@ export default function ListDetails() {
 							<>
 								{list.submitted && (
 									<dl>
-										<DetailsRow title="Responsible" currentValue={list.responsible ?? ''} />
-										<DetailsRow title="Phone number" currentValue={list.phoneNumber ?? ''} />
-										<DetailsRow title="Date of Event" currentValue={list.eventDate ?? ''} />
-										<DetailsRow title="Comment" currentValue={list.comment ?? '-'} />
+										<DetailsRow title="Responsible" displayValue={list.responsible} />
+										<DetailsRow title="Phone number" displayValue={list.phoneNumber} />
+										<DetailsRow title="Date of Event" displayValue={list.eventDate} />
+										<DetailsRow title="Comment" displayValue={list.comment} />
 									</dl>
 								)}
 								{list.verified ? (
