@@ -236,6 +236,13 @@ button.menu-item {
 	border-radius: 0;
 }
 
+div.divider {
+	height: 0.1rem;
+	width: 100%;
+	background-color: currentcolor;
+	margin: 1rem 0;
+}
+
 // TODO:
 // - Fix this to support light theme
 // - Semi-low priority, app will mostly be used when it's dark outside

@@ -1,31 +1,18 @@
 import { ReactNode } from 'react';
-import { Link, useLocation, useRoutes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Cog from '../icons/Cog';
 import { User } from '../user/types';
-import { useUser } from '../user/user.context';
 
 type NavbarItemProps =
-	| { type?: 'icon' | 'text'; children: ReactNode; to: string; action?: undefined }
-	| {
-			type?: 'icon' | 'text';
-			children: ReactNode;
-			action: () => void;
-			to?: undefined;
-	  };
+	| { to: string; children: ReactNode; icon?: undefined }
+	| { to: string; children?: undefined; icon: JSX.Element };
 
-function NavbarItem({ type = 'text', to, action, children }: NavbarItemProps) {
-	if (action) {
-		return (
-			<button onClick={action}>
-				<li className={`navbar-item-${type}`}>{children}</li>
-			</button>
-		);
-	} else {
-		return (
-			<Link to={to} relative="path">
-				<li className={`navbar-item-${type}`}>{children}</li>
-			</Link>
-		);
-	}
+function NavbarItem({ to, children, icon }: NavbarItemProps) {
+	return (
+		<Link to={to} relative="path">
+			<li className={`navbar-item-${icon ? 'icon' : 'text'}`}>{icon ?? children}</li>
+		</Link>
+	);
 }
 
 type NavbarProps = {
@@ -39,9 +26,12 @@ export default function Navbar({ user }: NavbarProps) {
 				<div>
 					<NavbarItem to="/">Home</NavbarItem>
 				</div>
-				<div>
-					{user && <NavbarItem to={`/users/${user.handle}`}>{user.name.split(' ')[0]}</NavbarItem>}
-				</div>
+				{user && (
+					<div>
+						<NavbarItem to={`/users/${user.handle}`}>{user.name.split(' ')[0]}</NavbarItem>
+						<NavbarItem to="/settings" icon={<Cog size="default" />} />
+					</div>
+				)}
 			</ul>
 		</div>
 	);

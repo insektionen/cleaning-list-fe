@@ -1,32 +1,37 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, Language, LANGUAGE_MAP } from './language';
 
 type Translation = { [key: string]: string | Translation };
 
-// const LS_TOKEN_KEY = 'in-cleaning:lang';
-const DEFAULT_LANGUAGE = 'sv';
+const LS_TOKEN_KEY = 'in-cleaning:lang';
 
 const TranslationContext = createContext<{
 	t: (...keys: string[]) => string;
 	loading: boolean;
-	// language: string;
-	// setLanguage: (language: string) => void;
-}>({ t: () => '', loading: true /*, language: 'sv', setLanguage: () => {}*/ });
+	language: Language;
+	setLanguage: (language: Language) => void;
+}>({
+	t: () => '',
+	loading: true,
+	language: 'sv',
+	setLanguage: () => {},
+});
 
 export const useTranslate = () => useContext(TranslationContext);
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
 	const [loading, setLoading] = useState(true);
-	const [language, setLanguage] = useState<string>(DEFAULT_LANGUAGE);
+	const [language, setLanguageInternal] = useState<Language>(DEFAULT_LANGUAGE);
 	const [translation, setTranslation] = useState<Translation>();
 
-	// useEffect(() => {
-	// 	const language = localStorage.getItem(LS_TOKEN_KEY);
-	// 	if (language) return setLanguage(language);
+	useEffect(() => {
+		const language = localStorage.getItem(LS_TOKEN_KEY) as Language;
+		if (language && AVAILABLE_LANGUAGES.includes(language)) return setLanguageInternal(language);
 
-	// 	localStorage.setItem(LS_TOKEN_KEY, DEFAULT_LANGUAGE);
-	// 	setLanguage(DEFAULT_LANGUAGE);
-	// }, []);
+		localStorage.setItem(LS_TOKEN_KEY, DEFAULT_LANGUAGE);
+		setLanguageInternal(DEFAULT_LANGUAGE);
+	}, []);
 
 	useEffect(() => {
 		if (language) getTranslation();
@@ -38,13 +43,23 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 
 	async function getTranslation() {
 		setLoading(true);
+
 		try {
 			const translation = await import(`../assets/translations/${language}.json`);
 			setTranslation(translation.default);
 		} catch (e) {
-			toast.error(`Could not find translations for language '${language}'`);
-			setLoading(false);
+			toast.error(`Could not find translations for language '${LANGUAGE_MAP[language]}'`);
+			try {
+				const translation = await import(`../assets/translations/${DEFAULT_LANGUAGE}.json`);
+				toast.success(`Defaulted language to ${LANGUAGE_MAP[DEFAULT_LANGUAGE]}`);
+				setTranslation(translation.default);
+			} catch (e) {
+				toast.error(
+					`Failed to load defaulted language '${LANGUAGE_MAP[DEFAULT_LANGUAGE]}'. Make sure you're connected to the internet and reloading the window. Report this as a bug if the problem persists.`
+				);
+			}
 		}
+		setLoading(false);
 	}
 
 	function t(...keys: string[]) {
@@ -65,7 +80,21 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 		return translationPart;
 	}
 
+	function setLanguage(language: Language) {
+		localStorage.setItem(LS_TOKEN_KEY, language);
+		setLanguageInternal(language);
+	}
+
 	return (
-		<TranslationContext.Provider value={{ t, loading }}>{children}</TranslationContext.Provider>
+		<TranslationContext.Provider
+			value={{
+				t,
+				loading,
+				language,
+				setLanguage: setLanguage,
+			}}
+		>
+			{children}
+		</TranslationContext.Provider>
 	);
 }
