@@ -14,7 +14,6 @@ export default function PasswordReset() {
 	const navigate = useNavigate();
 
 	function resetPassword() {
-		console.log({ token, password });
 		if (!token) return toast.error('No token provided');
 		if (!password) return toast.error('No new password provided');
 

@@ -158,8 +158,6 @@ export default function ListDetails() {
 		const date = dateRef.current?.value;
 		const comment = commentRef.current?.value || null;
 
-		console.log(date);
-
 		const missing = [
 			{ name: 'Name', val: responsible },
 			{ name: 'Phone number', val: phoneNumber },
