@@ -36,10 +36,17 @@ export default function Settings() {
 			<div className="divider" />
 
 			<Select
+				title="List language"
 				value={language ?? currentLanguage}
 				options={AVAILABLE_LANGUAGES.map((key) => ({ key, display: LANGUAGE_MAP[key] }))}
 				onChange={setLanguage}
 			/>
+			{[language, currentLanguage].includes('en') && (
+				<p>
+					<b>Note:</b> Currently no english translations exist for any lists, but once they do your
+					preference will be remembered.
+				</p>
+			)}
 			<button style={{ marginTop: '0.5rem' }} disabled={!canSave} onClick={saveCanges}>
 				{loading ? <Spin /> : 'Save changes'}
 			</button>

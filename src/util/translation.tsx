@@ -48,10 +48,13 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 			const translation = await import(`../assets/translations/${language}.json`);
 			setTranslation(translation.default);
 		} catch (e) {
-			toast.error(`Could not find translations for language '${LANGUAGE_MAP[language]}'`);
 			try {
 				const translation = await import(`../assets/translations/${DEFAULT_LANGUAGE}.json`);
-				toast.success(`Defaulted language to ${LANGUAGE_MAP[DEFAULT_LANGUAGE]}`);
+				// TODO: Remove `if` condition after english translations have been added
+				if (language !== 'en')
+					toast.error(
+						`Could not find translations for ${LANGUAGE_MAP[language]} so is using ${LANGUAGE_MAP[DEFAULT_LANGUAGE]} as fallback`
+					);
 				setTranslation(translation.default);
 			} catch (e) {
 				toast.error(
@@ -83,6 +86,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 	function setLanguage(language: Language) {
 		localStorage.setItem(LS_TOKEN_KEY, language);
 		setLanguageInternal(language);
+		toast.success(`Set the language to ${LANGUAGE_MAP[language]}`);
 	}
 
 	return (
