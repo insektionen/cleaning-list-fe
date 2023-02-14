@@ -1,11 +1,13 @@
 @use './shared.scss' as *;
 
 :root {
+	--color: 255 255 255;
+
 	font-family: 'InterVariable', sans-serif;
 	font-weight: 400;
 
 	color-scheme: dark;
-	color: rgba(255, 255, 255, 0.87);
+	color: rgb(var(--color) / 0.85);
 	background-color: #2222;
 
 	font-synthesis: none;
@@ -81,6 +83,12 @@ button {
 	background-color: $input-background;
 	cursor: pointer;
 	transition: border-color 0.25s ease;
+
+	&:disabled {
+		border: none;
+		cursor: initial;
+		color: rgb(var(--color) / 0.5);
+	}
 
 	&.icon-button {
 		padding: 0.6em 0.8em;
@@ -234,6 +242,13 @@ button.menu-item {
 	border: none;
 	background-color: transparent;
 	border-radius: 0;
+}
+
+div.divider {
+	height: 0.1rem;
+	width: 100%;
+	background-color: currentcolor;
+	margin: 1rem 0;
 }
 
 // TODO:

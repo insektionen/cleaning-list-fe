@@ -1,5 +1,12 @@
 @use './shared.scss' as *;
 
+@mixin input {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0.25em 0;
+}
+
 label.checkbox {
 	display: flex;
 	padding: 0.2em;
@@ -80,7 +87,7 @@ label.checkbox {
 }
 
 .select {
-	margin: 0.25rem 0;
+	@include input();
 
 	> div {
 		width: 100%;
@@ -137,10 +144,7 @@ label.checkbox {
 }
 
 .date-picker {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	margin: 0.25em 0;
+	@include input();
 
 	> input[type='date'] {
 		width: 100%;
@@ -156,10 +160,7 @@ label.checkbox {
 }
 
 .input {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	margin: 0.25em 0;
+	@include input();
 
 	> input {
 		width: 100%;

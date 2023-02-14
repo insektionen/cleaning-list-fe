@@ -18,6 +18,7 @@ import ListDetails from './views/ListDetails';
 import ListList from './views/ListList';
 import { TranslationProvider } from './util/translation';
 import PasswordReset from './views/PasswordReset';
+import Settings from './views/Settings';
 
 function App() {
 	return (
@@ -39,6 +40,8 @@ function App() {
 							{user ? (
 								<>
 									<Route path="/" element={<Home />} />
+									<Route path="/settings" element={<Settings />} />
+
 									<Route path="/lists" element={<ListList />} />
 									<Route path="/lists/:listId" element={<ListDetails />} />
 									<Route path="/create-list" element={<CreateList />} />

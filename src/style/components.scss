@@ -17,15 +17,17 @@ div.navbar {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		column-gap: 0.25rem;
 		height: 100%;
 		max-width: $max-screen-width;
 
 		> div {
 			display: flex;
+			flex-direction: row;
+			column-gap: 0.25rem;
 			height: 100%;
 
-			> a > li,
-			> button > li {
+			> a > li {
 				height: 100%;
 				display: flex;
 				justify-content: center;
@@ -44,7 +46,8 @@ div.navbar {
 				}
 
 				&.navbar-item-icon {
-					height: $navbar-height;
+					width: $navbar-height;
+					font-size: 1.75rem;
 				}
 			}
 

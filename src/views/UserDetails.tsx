@@ -154,22 +154,9 @@ export default function UserDetails() {
 							<button onClick={() => setIsEditing(true)}>Edit User</button>
 						))}
 
-					{ownUser && (
-						<button style={{ marginTop: '0.5rem' }} onClick={invalidateToken}>
-							Sign Out
-						</button>
-					)}
-
 					{(ownUser || (main.role === 'ADMIN' && user.role !== 'ADMIN')) && (
 						<>
-							<div
-								style={{
-									height: '0.1rem',
-									width: '100%',
-									backgroundColor: 'currentcolor',
-									margin: '1rem 0',
-								}}
-							/>
+							<div className="divider" />
 							<h3 style={{ marginBottom: '0.5rem' }}>Change password</h3>
 							<Input
 								value={currentPassword}
