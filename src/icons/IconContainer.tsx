@@ -1,13 +1,13 @@
 import { CSSProperties, PropsWithChildren } from 'react';
 
 export type IconProps = {
-	size: string | number;
+	size?: string | number;
 	style?: CSSProperties;
 	className?: string;
 };
 
 export default function IconContainer({
-	size,
+	size = '1em',
 	style = {},
 	className = '',
 	children,

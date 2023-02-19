@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 type PageProps = {
 	children?: ReactNode;
@@ -6,6 +6,7 @@ type PageProps = {
 	headerColor?: string;
 	wideContent?: boolean;
 	className?: string;
+	style?: CSSProperties;
 };
 
 export default function Page({
@@ -16,9 +17,9 @@ export default function Page({
 	children,
 }: PageProps) {
 	return (
-		<section>
+		<main>
 			{header && <header style={{ backgroundColor: headerColor }}>{header}</header>}
 			<div className={`content ${wideContent ? 'wide-content' : ''} ${className}`}>{children}</div>
-		</section>
+		</main>
 	);
 }

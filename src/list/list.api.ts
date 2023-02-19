@@ -6,6 +6,7 @@ type UpdateListProps = {
 	responsible?: string;
 	phoneNumber?: string;
 	eventDate?: string;
+	owner?: string;
 	comment?: string | null;
 	submit?: true;
 	verify?: true;

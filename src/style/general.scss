@@ -33,8 +33,7 @@ a:hover {
 html,
 body {
 	margin: 0;
-	min-width: 320px;
-	max-width: 100%;
+	width: 100%;
 	overflow-x: hidden;
 	min-height: 100vh;
 
@@ -83,6 +82,7 @@ button {
 	background-color: $input-background;
 	cursor: pointer;
 	transition: border-color 0.25s ease;
+	outline: none !important;
 
 	&:disabled {
 		border: none;
@@ -132,13 +132,13 @@ pre {
 }
 
 @media (max-width: calc(540px + 1rem)) {
-	section {
+	main {
 		min-width: 0 !important;
 		width: calc(100% - 1rem);
 	}
 }
 
-section {
+main {
 	border-radius: 0.5rem;
 	background-color: #222;
 	box-shadow: 1px 4px 16px 2px #0008;
@@ -154,6 +154,9 @@ section {
 		font-size: 2rem;
 		font-weight: 700;
 		text-align: center;
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
 	}
 
 	> div.content {

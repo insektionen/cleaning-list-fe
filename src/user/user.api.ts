@@ -9,6 +9,12 @@ type UpdateUserParams = {
 	currentPassword?: string;
 };
 
+type FindUsersParams = {
+	limit?: number;
+	page?: number;
+	search?: string;
+};
+
 export async function login(username: string, password: string): Promise<MyUser> {
 	return await client.post<MyUser>(`/users/login`, { username, password }).then(({ data }) => data);
 }
@@ -69,8 +75,8 @@ export async function newUserGeneratorSecret(password: string): Promise<string> 
 	return await client.post<string>('/users/new-secret', { password }).then(({ data }) => data);
 }
 
-export async function findUsers(): Promise<MinimalUser[]> {
-	return await client.get<MinimalUser[]>('/users').then(({ data }) => data);
+export async function findUsers(params?: FindUsersParams): Promise<MinimalUser[]> {
+	return await client.get<MinimalUser[]>('/users', { params }).then(({ data }) => data);
 }
 
 export async function findUser(handle: string): Promise<User> {
