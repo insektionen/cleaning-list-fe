@@ -5,9 +5,13 @@ import { useParams } from 'react-router';
 import Checkbox from '../components/Checkbox';
 import DatePicker from '../components/DatePicker';
 import DetailsRow from '../components/DetailsRow';
+import Expandable from '../components/Expandable';
 import Input from '../components/Input';
+import ListOptionsModal from '../components/ListOptionsModal';
+import Modal from '../components/Modal';
 import Page from '../components/Page';
 import Spin from '../components/Spin';
+import Cog from '../icons/Cog';
 import NotSubmitted from '../icons/NotSubmitted';
 import Reload from '../icons/Reload';
 import Submitted from '../icons/Submitted';
@@ -18,6 +22,7 @@ import { useUser } from '../user/user.context';
 import { roleAtLeast } from '../util/minRole';
 import { phoneNumberRegex } from '../util/regex';
 import { useTranslate } from '../util/translation';
+import useDebounce from '../util/useDebounce';
 import useInputRef from '../util/useInputRef';
 import validateDate from '../util/validateDate';
 
@@ -38,6 +43,7 @@ export default function ListDetails() {
 		alteredBy: 'user' | 'saver';
 	}>({ changes: {}, alteredBy: 'user' });
 	const [updatingList, setUpdatingList] = useState(false);
+	const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
 
 	const nameRef = useInputRef();
 	const phoneRef = useInputRef();
@@ -46,7 +52,7 @@ export default function ListDetails() {
 
 	const canEdit = useMemo(
 		() =>
-			(user.handle === list?.createdBy.handle || roleAtLeast(user.role, 'MOD')) && !list?.submitted,
+			(user.handle === list?.ownedBy.handle || roleAtLeast(user.role, 'MOD')) && !list?.submitted,
 		[user, list]
 	);
 	const canVerify = useMemo(
@@ -54,7 +60,7 @@ export default function ListDetails() {
 			list?.submitted &&
 			!list.verified &&
 			(roleAtLeast(user.role, 'MOD') ||
-				(user.role === 'MANAGER' && user.handle !== list.createdBy.handle)),
+				(user.role === 'MANAGER' && user.handle !== list.ownedBy.handle)),
 		[user, list]
 	);
 	const canReload = useMemo(() => {
@@ -78,27 +84,36 @@ export default function ListDetails() {
 			.catch(() => {
 				setLoading(false); // Should perhaps navigate to another page instead?
 			});
-	}, []);
+	}, [listId]);
 
 	useEffect(() => {
 		if (!list) return;
 
-		if (canEdit && user.handle === list.createdBy.handle && !list.submitted) setIsEditing(true);
+		if (canEdit && user.handle === list.ownedBy.handle && !list.submitted) setIsEditing(true);
 	}, [user, list]);
 
-	const debounce = useRef<NodeJS.Timeout | null>(null);
+	useEffect(() => {
+		if (!list) return;
+
+		const changes: Record<string, boolean> = {};
+		Object.entries(editedFields.changes).forEach(([key, value]) => {
+			if (value !== undefined && value !== list.fields[key]) changes[key] = value;
+		});
+		setEditedFields({ changes, alteredBy: 'saver' });
+	}, [list]);
+
+	const { setDebounce, clearDebounce, pauseDebounce, resumeDebounce, active } =
+		useDebounce(DEBOUNCE_TIME);
 	const promise = useRef<Promise<List> | null>(null);
 	const savingChanges = useRef(false);
 
 	useEffect(() => {
 		if (editedFields.alteredBy !== 'user') return;
-		if (debounce.current) clearTimeout(debounce.current);
 		if (!Object.values(editedFields.changes).some((val) => val !== undefined)) {
-			if (debounce.current && !savingChanges.current)
+			if (active && !savingChanges.current)
 				toast.success('No changes to save', { id: TOAST_ID, duration: 2_000 });
 
-			debounce.current = null;
-			return;
+			return clearDebounce();
 		}
 
 		toast.loading('Waiting...', {
@@ -106,13 +121,11 @@ export default function ListDetails() {
 			duration: Infinity,
 			id: TOAST_ID,
 		});
-		debounce.current = setTimeout(saveChanges, DEBOUNCE_TIME);
+		setDebounce(saveChanges);
 	}, [editedFields.changes]);
 
 	async function saveChanges() {
 		if (!list) return;
-		debounce.current = null;
-
 		if (promise.current) {
 			await promise.current;
 		}
@@ -124,13 +137,11 @@ export default function ListDetails() {
 		promise.current = listApi.updateList(list?.id, {
 			fields: changes as Record<string, boolean>,
 		});
-		setEditedFields({ changes: {}, alteredBy: 'saver' });
 		try {
 			const newList = await promise.current;
 			setList(newList);
 			toast.success('Saved', { id: TOAST_ID, duration: 4_000 });
 		} catch (error) {
-			setEditedFields({ changes: { ...changes, ...editedFields.changes }, alteredBy: 'saver' });
 			toast.dismiss(TOAST_ID);
 		}
 
@@ -189,18 +200,14 @@ export default function ListDetails() {
 			return setUpdatingList(false);
 		}
 
-		if (debounce.current) {
-			clearTimeout(debounce.current);
-		}
-		debounce.current = null;
+		pauseDebounce();
 		promise.current = null;
 
 		if (
 			fieldsMissing &&
 			!confirm('Are you sure you want to submit the list with incomplete fields?')
 		) {
-			// Restart debounce timer, half time to pretend like it was paused
-			debounce.current = setTimeout(saveChanges, DEBOUNCE_TIME / 2);
+			resumeDebounce();
 			return setUpdatingList(false);
 		}
 
@@ -255,8 +262,16 @@ export default function ListDetails() {
 				<Spin size="medium" />
 			) : list ? (
 				<>
+					<ListOptionsModal
+						open={showAdvancedOptions}
+						setOpen={setShowAdvancedOptions}
+						list={list}
+						setList={setList}
+						user={user}
+					/>
+
 					<div className="fixed-actions">
-						{canEdit && user.handle !== list.createdBy.handle && (
+						{canEdit && user.handle !== list.ownedBy.handle && (
 							<button onClick={() => setIsEditing((isEditing) => !isEditing)}>
 								{isEditing ? 'Stop Editing' : 'Begin Editing'}
 							</button>
@@ -267,7 +282,15 @@ export default function ListDetails() {
 							</button>
 						)}
 					</div>
-					<h1>{t(list.type, 'name')}</h1>
+					<h1>
+						{t(list.type, 'name') + ' '}
+						<span style={{ fontSize: '0.6em', opacity: 0.7 }}>v{list.version}</span>
+					</h1>
+					<Expandable visible={isEditing} expectedMinHeight="4rem">
+						<button style={{ flex: '1' }} onClick={() => setShowAdvancedOptions(true)}>
+							Advanced options
+						</button>
+					</Expandable>
 					{list.structure.map((area, areaIndex) => (
 						<div key={area.name} className="area">
 							<h2>{t(list.type, 'areas', area.name, 'name')}</h2>

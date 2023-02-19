@@ -19,6 +19,7 @@ label.checkbox {
 		margin: 0;
 		padding: 0;
 		border: none;
+		outline: none;
 
 		&:hover ~ span.checkmark > span {
 			opacity: 0.4;
@@ -171,5 +172,81 @@ label.checkbox {
 		padding: 0.5em;
 		font-size: 1em;
 		margin: 0;
+	}
+}
+
+.autocomplete {
+	position: relative;
+
+	.autocomplete-input {
+		position: relative;
+		width: 100%;
+
+		> input {
+			width: 100%;
+			border-radius: 0.25rem;
+			border: 0.1rem solid #ccc;
+			background-color: $input-background;
+			color: #eee;
+			padding: 0.5em;
+			font-size: 1em;
+			margin: 0;
+		}
+
+		.autocomplete-input-special {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			padding: 0.75rem;
+			display: flex;
+			align-items: center;
+		}
+
+		.autocomplete-input-action {
+			background-color: transparent;
+			padding: 0;
+			margin: 0;
+			border-radius: 0;
+			border: none;
+			outline: none;
+		}
+	}
+
+	ul {
+		position: absolute;
+		margin-top: 0.5rem;
+		width: 100%;
+		background-color: #111;
+		color: #eee;
+		padding: 0.25rem 0;
+		border-radius: 0.5rem;
+		border: 1px solid #333;
+
+		> li {
+			position: relative;
+			padding: 0.5rem;
+			background-color: rgb(255 255 255 / 0);
+			transition: background-color 0.2s ease;
+			display: flex;
+			align-items: center;
+
+			&.active-item {
+				background-color: rgb(255 255 255 / 0.1);
+			}
+
+			.selected-item {
+				position: absolute;
+			}
+
+			.item-content {
+				padding-left: 1.5rem;
+				max-width: 100%;
+			}
+		}
+
+		.no-results {
+			margin: 0.5rem;
+		}
 	}
 }

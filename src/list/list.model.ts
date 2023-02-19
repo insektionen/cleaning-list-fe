@@ -14,11 +14,19 @@ export type List = {
 	submitted: boolean;
 	verified: boolean;
 	createdBy: MinimalUser;
+	ownedBy: MinimalUser;
 };
 
 export type MinimalList = Omit<
 	List,
-	'structure' | 'fields' | 'colors' | 'responsible' | 'phoneNumber' | 'comment' | 'createdBy'
+	| 'structure'
+	| 'fields'
+	| 'colors'
+	| 'responsible'
+	| 'phoneNumber'
+	| 'comment'
+	| 'createdBy'
+	| 'ownedBy'
 >;
 
 export type Structure = {

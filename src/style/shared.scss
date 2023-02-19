@@ -8,10 +8,6 @@ $navbar-height: 3.5rem;
 	-webkit-user-select: none;
 }
 
-.self-center {
-	align-self: center;
-}
-
 .flex-row {
 	display: flex;
 	flex-direction: row;
@@ -22,6 +18,22 @@ $navbar-height: 3.5rem;
 	flex-direction: column;
 }
 
+.items-center {
+	align-items: center;
+}
+
+.self-center {
+	align-self: center;
+}
+
+.gap-\.5 {
+	gap: 0.5rem !important;
+}
+
 .gap-1 {
 	gap: 1rem !important;
+}
+
+.justify-between {
+	justify-content: space-between;
 }
