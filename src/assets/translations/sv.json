@@ -305,7 +305,7 @@
 						"checks": {
 							"screenAndComputer": "Skärmar och dator avstängd",
 							"lightning": "Belysningen avstängd",
-							"jalusei": "Jalusi neddragen och dörren låst",
+							"shutter": "Jalusi neddragen och dörren låst",
 							"alarm": "LARMA!"
 						}
 					}
@@ -375,7 +375,7 @@
 					"all": {
 						"checks": {
 							"lostAndFound": "Eventuella kvarglömda saker i lost and found",
-							"storageTtuffs": "Eventuellt material från andra förråd ska vara tillbaka, INTE lämnas i korridoren.",
+							"storageThings": "Eventuellt material från andra förråd ska vara tillbaka, INTE lämnas i korridoren.",
 							"floorSwept": "Golvet sopat",
 							"floorMopped": "Golvet moppat efter behov"
 						}

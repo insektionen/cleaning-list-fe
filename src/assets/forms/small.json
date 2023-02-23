@@ -87,7 +87,7 @@
 			"categories": [
 				{
 					"name": "all",
-					"checks": ["lostAndFound", "storageThings", "floorsSwept", "floorMopped"]
+					"checks": ["lostAndFound", "storageThings", "floorSwept", "floorMopped"]
 				}
 			]
 		},
