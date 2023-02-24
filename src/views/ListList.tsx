@@ -10,10 +10,14 @@ import Verified from '../icons/Verified';
 import { useTranslate } from '../util/translation';
 
 function listIcon(list: MinimalList) {
-	if (list.verified) return <Verified size="1.5rem" />;
-	if (list.submitted) return <Submitted size="1.5rem" />;
-
-	return <NotSubmitted size="1.5rem" />;
+	switch (list.status) {
+		case 'open':
+			return <NotSubmitted size="1.5rem" />;
+		case 'submitted':
+			return <Submitted size="1.5rem" />;
+		case 'verified':
+			return <Verified size="1.5rem" />;
+	}
 }
 
 export default function UsersList() {

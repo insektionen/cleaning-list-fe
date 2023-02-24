@@ -52,12 +52,12 @@ export default function ListDetails() {
 
 	const canEdit = useMemo(
 		() =>
-			(user.handle === list?.ownedBy.handle || roleAtLeast(user.role, 'MOD')) && !list?.submitted,
+			(user.handle === list?.ownedBy.handle || roleAtLeast(user.role, 'MOD')) && !list?.submittedAt,
 		[user, list]
 	);
 	const canVerify = useMemo(
 		() =>
-			list?.submitted &&
+			list?.submittedAt &&
 			!list.verified &&
 			(roleAtLeast(user.role, 'MOD') ||
 				(user.role === 'MANAGER' && user.handle !== list.ownedBy.handle)),
@@ -65,7 +65,7 @@ export default function ListDetails() {
 	);
 	const canReload = useMemo(() => {
 		if (!list) return false;
-		return !list.submitted;
+		return !list.submittedAt;
 	}, [list]);
 
 	useEffect(() => {
@@ -89,7 +89,7 @@ export default function ListDetails() {
 	useEffect(() => {
 		if (!list) return;
 
-		if (canEdit && user.handle === list.ownedBy.handle && !list.submitted) setIsEditing(true);
+		if (canEdit && user.handle === list.ownedBy.handle && !list.submittedAt) setIsEditing(true);
 	}, [user, list]);
 
 	useEffect(() => {
@@ -197,6 +197,13 @@ export default function ListDetails() {
 
 		if (fieldsMissing && !comment) {
 			toast.error("A comment is required if all fileds aren't filled out");
+			return setUpdatingList(false);
+		}
+
+		if (
+			list.ownedBy.handle !== user.handle &&
+			!confirm('Are you sure you want to submit this list? This would make you the new list owner.')
+		) {
 			return setUpdatingList(false);
 		}
 
@@ -350,7 +357,7 @@ export default function ListDetails() {
 							</form>
 						) : (
 							<>
-								{list.submitted && (
+								{list.status !== 'open' && (
 									<dl>
 										<DetailsRow title="Responsible" displayValue={list.responsible} />
 										<DetailsRow title="Phone number" displayValue={list.phoneNumber} />
@@ -367,15 +374,15 @@ export default function ListDetails() {
 									<button onClick={verifyList} disabled={updatingList}>
 										{updatingList ? <Spin /> : 'Verify'}
 									</button>
-								) : list.submitted ? (
+								) : list.submittedAt ? (
 									<div className="status">
 										<Submitted size="1.8rem" />
-										<span>Unverified</span>
+										<span>Submitted</span>
 									</div>
 								) : (
 									<div className="status">
 										<NotSubmitted size="1.8rem" />
-										<span>In Progress</span>
+										<span>Open</span>
 									</div>
 								)}
 							</>
